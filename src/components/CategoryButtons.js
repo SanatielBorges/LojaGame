@@ -5,6 +5,11 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 5rem;
+
+  @media (max-width: 480px) {
+    flex-wrap: wrap; /* Permite que os botões caiam para a linha de baixo */
+    justify-content: center; /* Centraliza os botões */
+  }
 `;
 
 const CategoryButton = styled.button`
@@ -21,6 +26,11 @@ const CategoryButton = styled.button`
   &:hover {
     background-color: ${(props) => (props.selected ? "#003d80" : "#0056b3")};
     transition: ease all 0.3s;
+  }
+
+  @media (max-width: 480px) {
+    margin: 0.5rem 0; /* Ajusta a margem para telas menores */
+    width: 90%; /* Garante que os botões ocupem a maior parte da largura da tela */
   }
 `;
 

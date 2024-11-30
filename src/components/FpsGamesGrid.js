@@ -20,6 +20,16 @@ const GameCard = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+
+  @media (max-width: 480px) {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 `;
 
 const GameImageContainer = styled.div`
@@ -37,7 +47,6 @@ const GameImage = styled.img`
     transform: scale(1.05);
   }
 `;
-
 const GameInfo = styled.div`
   padding: 1rem;
   background: linear-gradient(to bottom, black, navy);
@@ -77,7 +86,6 @@ const ActionButton = styled.button`
     background-color: #007bff;
   }
 `;
-
 const FpsGamesGrid = ({
   searchText,
   favorites,
@@ -121,7 +129,6 @@ const FpsGamesGrid = ({
       ? game.title.toLowerCase().includes(searchText.toLowerCase())
       : true
   );
-
   return (
     <GridContainer>
       {filteredGames.map((game) => {

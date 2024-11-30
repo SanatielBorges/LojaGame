@@ -39,6 +39,10 @@ const ModalWrapper = styled(Modal)`
   justify-content: center;
   align-items: center;
   margin-top: 4rem;
+
+  @media (max-width: 480px) {
+    margin: 0.5rem 0;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -49,10 +53,15 @@ const ModalContent = styled.div`
   width: 80%;
   max-height: 90%;
   overflow-y: auto;
+
+  @media (max-width: 480px) {
+    width: 90%;
+    padding: 1rem; /* Ajusta o padding para telas menores */
+  }
 `;
 
 const ScrollableDiv = styled.div`
-  max-height: 300px; /* Ajuste conforme necessário */
+  max-height: 300px;
   overflow-y: auto;
   padding: 1rem;
   border-radius: 10px;
@@ -98,12 +107,18 @@ const Input = styled.input`
   color: white;
   width: 150px;
   margin-right: 0.5rem;
+
+  @media (max-width: 480px) {
+    width: 100%; /* Ajusta a largura para telas menores */
+    margin-right: 0; /* Remove a margem direita em telas menores */
+  }
 `;
 
 const CouponInfo = styled.div`
   margin-top: 1rem;
   color: yellow;
 `;
+
 const CartAndFavorites = ({
   favoriteCount,
   cartCount,
@@ -185,6 +200,7 @@ const CartAndFavorites = ({
   }, 0);
 
   const discountedAmount = totalAmount * (1 - discount);
+
   const addToFavorites = (game) => {
     if (game.background_image && game.name && game.price) {
       const gameData = {
@@ -220,6 +236,7 @@ const CartAndFavorites = ({
   const removeFromCart = (game) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== game.id));
   };
+
   return (
     <>
       <CartAndFavoritesContainer>
@@ -239,7 +256,6 @@ const CartAndFavorites = ({
           </IconWrapper>
         </IconContainer>
       </CartAndFavoritesContainer>
-
       <ModalWrapper
         isOpen={isFavoritesModalOpen}
         onRequestClose={closeFavoritesModal}
@@ -287,31 +303,37 @@ const CartAndFavorites = ({
           <Button onClick={closeFavoritesModal}>Fechar</Button>
         </ModalContent>
       </ModalWrapper>
-
       <ModalWrapper isOpen={isCartModalOpen} onRequestClose={closeCartModal}>
+        {" "}
         <ModalContent>
-          <h2>Carrinho</h2>
+          {" "}
+          <h2>Carrinho</h2>{" "}
           {cart.length > 0 ? (
             <ScrollableDiv>
+              {" "}
               {cart.map((game) => (
                 <div
                   key={game.id}
                   style={{ display: "flex", alignItems: "center" }}
                 >
+                  {" "}
                   <img
                     src={game.img}
                     alt={game.title}
                     style={{ width: "50px", marginRight: "10px" }}
-                  />
+                  />{" "}
                   <p>
-                    {game.title} - {game.price}
-                  </p>
+                    {" "}
+                    {game.title} - {game.price}{" "}
+                  </p>{" "}
                   <CloseButton onClick={() => removeFromCart(game)}>
-                    X
-                  </CloseButton>
+                    {" "}
+                    X{" "}
+                  </CloseButton>{" "}
                 </div>
-              ))}
+              ))}{" "}
               <div style={{ marginTop: "1rem" }}>
+                {" "}
                 <div
                   style={{
                     display: "flex",
@@ -319,36 +341,40 @@ const CartAndFavorites = ({
                     gap: "0.5rem",
                   }}
                 >
+                  {" "}
                   <Input
                     type="text"
                     placeholder="Cupom de Desconto"
                     value={coupon}
                     onChange={(e) => setCoupon(e.target.value)}
-                  />
-                  <Button onClick={handleApplyCoupon}>Aplicar Cupom</Button>
-                </div>
-                <CouponInfo>Use o cupom: DESCONTO10</CouponInfo>
-              </div>
-              <p>Total: R$ {totalAmount.toFixed(2)}</p>
+                  />{" "}
+                  <Button onClick={handleApplyCoupon}>Aplicar Cupom</Button>{" "}
+                </div>{" "}
+                <CouponInfo>Use o cupom: DESCONTO10</CouponInfo>{" "}
+              </div>{" "}
+              <p>Total: R$ {totalAmount.toFixed(2)}</p>{" "}
               {isCouponApplied && (
                 <>
-                  <p>Desconto aplicado: {discount * 100}%</p>
-                  <p>Valor com desconto: R$ {discountedAmount.toFixed(2)}</p>
+                  {" "}
+                  <p>Desconto aplicado: {discount * 100}%</p>{" "}
+                  <p>Valor com desconto: R$ {discountedAmount.toFixed(2)}</p>{" "}
                 </>
-              )}
+              )}{" "}
               <div style={{ display: "flex", gap: "1rem" }}>
-                <Button onClick={handleEmptyCart}>Esvaziar Carrinho</Button>
-                <Button onClick={handleCheckout}>Finalizar Compra</Button>
-              </div>
+                {" "}
+                <Button onClick={handleEmptyCart}>
+                  Esvaziar Carrinho
+                </Button>{" "}
+                <Button onClick={handleCheckout}>Finalizar Compra</Button>{" "}
+              </div>{" "}
             </ScrollableDiv>
           ) : (
             <p>Não há itens no carrinho.</p>
-          )}
-          <Button onClick={closeCartModal}>Fechar</Button>
-        </ModalContent>
-      </ModalWrapper>
+          )}{" "}
+          <Button onClick={closeCartModal}>Fechar</Button>{" "}
+        </ModalContent>{" "}
+      </ModalWrapper>{" "}
     </>
   );
 };
-
 export default CartAndFavorites;

@@ -4,20 +4,36 @@ import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import game1 from "../images/Avent-Horizon Zero Dawn.webp";
+import game1 from "../images/Avent-The Last of Us Part II.avif";
 import game2 from "../images/fifa2024.webp";
 import game3 from "../images/fps-Battlefield 3.jpg";
 import game4 from "../images/rpg-Divinity - Original Sin II.avif";
 
 const CarouselContainer = styled.div`
   margin: 2rem 0;
-  width: 100%;
+  padding: 0 2%; /* Adiciona espaçamento nas laterais */
+  width: calc(100% - 4%); /* Ajusta a largura para compensar o padding */
 
   .slick-dots li button:before {
     font-size: 0.6rem; /* Ajustar o tamanho das bolinhas */
   }
   .slick-dots li.slick-active button:before {
     color: red; /* Cor da bolinha ativa */
+  }
+
+  @media (max-width: 768px) {
+    .slick-arrow {
+      display: none; /* Remove as setas em tablets */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .slick-dots {
+      display: none; /* Remove as bolinhas de indicadores em smartphones */
+    }
+    .slick-arrow {
+      display: none; /* Remove as setas em smartphones */
+    }
   }
 `;
 
@@ -28,8 +44,8 @@ const CarouselImage = styled.img`
 `;
 
 const Slide = styled.div`
-  padding: 0 1%; /* Espaçamento entre as imagens: 2% dividido por 2 lados */
-  width: 23%; /* Cada imagem ocupa 23% da largura do container */
+  padding: 0 1%; /* Espaçamento entre as imagens */
+  width: calc(25% - 2%); /* Ajustando a largura para compensar o padding */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,6 +100,25 @@ const Carousel = () => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: false, // Remove as setas em tablets
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false, // Remove as setas em smartphones
+          dots: false, // Remove as bolinhas de indicadores em smartphones
+        },
+      },
+    ],
   };
 
   return (

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import Header from "../components/Header";
 import Carousel from "../components/Carousel";
 import CategoryButtons from "../components/CategoryButtons";
@@ -7,16 +8,23 @@ import FpsGamesGrid from "../components/FpsGamesGrid";
 import RpgGamesGrid from "../components/RpgGamesGrid";
 import AventGamesGrid from "../components/AventGamesGrid";
 import CartAndFavorites from "../components/CartAndFavorites";
-import styled from "styled-components";
 
 const SiteTitle = styled.h1`
   text-align: center;
   margin: 2rem 0;
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem; /* Ajuste o tamanho do texto para smartphones */
+  }
 `;
 
 const CategoryTitle = styled.h2`
   margin: 2rem 0 1rem 0;
   text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem; /* Ajuste o tamanho do texto para smartphones */
+  }
 `;
 
 const Home = () => {
@@ -70,7 +78,12 @@ const Home = () => {
         selectedCategory={selectedCategory}
         onSelectCategory={handleSelectCategory}
       />
-      <CategoryTitle>{selectedCategory} Jogos</CategoryTitle>
+      <CategoryTitle>
+        {selectedCategory === "Todos" && "Todos os Jogos"}
+        {selectedCategory === "FPS" && "Jogos FPS"}
+        {selectedCategory === "RPG" && "Jogos RPG"}
+        {selectedCategory === "Aventura" && "Jogos Aventura"}
+      </CategoryTitle>
       {selectedCategory === "Todos" && (
         <AllGamesGrid
           searchText={searchText}

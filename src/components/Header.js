@@ -9,17 +9,36 @@ const HeaderContainer = styled.header`
   padding: 1rem;
   background: linear-gradient(to bottom, navy, black);
   color: #fff;
+  flex-wrap: wrap; /* Permite que os itens se reagrupem em telas menores */
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const Logo = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
+  cursor: pointer;
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const SearchContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+
+  @media (max-width: 480px) {
+    margin: 0 auto;
+    width: 80%;
+    justify-content: flex-end;
+  }
 `;
 
 const SearchIcon = styled(FaSearch)`
@@ -62,6 +81,12 @@ const SearchInput = styled.input`
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
   visibility: ${(props) => (props.visible ? "visible" : "hidden")};
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 0.5rem;
+    animation: none; /* Desativar animação em telas menores */
+  }
 `;
 
 const Header = ({ onSearch }) => {
@@ -83,7 +108,7 @@ const Header = ({ onSearch }) => {
 
   return (
     <HeaderContainer>
-      <Logo>Loja de Games</Logo>
+      <Logo>S & N Games</Logo>
       <SearchContainer>
         <SearchIcon onClick={toggleSearch} />
         <SearchInput
