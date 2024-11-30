@@ -1,0 +1,10 @@
+{
+    "games": [
+      { "id": 1, "title": "Game 1", "category": "FPS", "price": 59.99, "img": "url_to_image_1" },
+      { "id": 2, "title": "Game 2", "category": "RPG", "price": 49.99, "img": "url_to_image_2" },
+      { "id": 3, "title": "Game 3", "category": "Aventura", "price": 39.99, "img": "url_to_image_3" },
+      { "id": 4, "title": "Game 4", "category": "FPS", "price": 59.99, "img": "url_to_image_4" }
+    ]
+  }
+
+  
